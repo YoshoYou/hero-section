@@ -1,0 +1,7 @@
+declare module './classroom.png'
+declare module './bachelor.png'
+declare module './night.png'
+declare module './sun.png'
+declare module './sun_light.png'
+declare module './sunny.png'
+declare module './contrast.png'
