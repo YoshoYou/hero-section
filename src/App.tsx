@@ -9,6 +9,7 @@ function App() {
   const [language, setLanguage] = useState<string>('english')
     const handleLanguage=(event:React.ChangeEvent<HTMLSelectElement>)=>{
     setLanguage(event.target.value)
+    console.log(language)
     }
   const handleMood = () => {
     /// to control  the mood I just learned about createcontext and I am not sure how to use it yet I will edit it when I master  it
