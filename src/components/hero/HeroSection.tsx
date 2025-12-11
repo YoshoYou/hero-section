@@ -5,30 +5,33 @@ import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { LuScreenShare } from "react-icons/lu";
+import { useMood } from "../nav/useContext/MoodContext";
 
-type HeroProps = {
-  mood:string,
-  language:string,
-  handleLanguage:(event:React.ChangeEvent<HTMLSelectElement>)=>void,
-  handleMood:()=>void,
-}
 
-const HeroSection = (props:HeroProps) => {
-   const buttonClass = `${props.mood==='light'?'text-white bg-white/5 backdrop-blur-lg hover:bg-white/15 ':'text-black bg-linear-to-r  from-purple-400 to-indigo-300 hover:from-purple-300 hover:to-indigo-200 '} rounded-xl   p-2  cursor-pointer  backdrop-blur-lg items-center flex justify-center sm:justify-first  sm:self-center  gap-2`
+
+const HeroSection = () => {
+  const { mood,language } = useMood();
+  const buttonClass = `${mood === 'light' ? 'text-white bg-white/5 backdrop-blur-lg hover:bg-white/15 ' : 'text-black bg-linear-to-r from-purple-400 to-indigo-300 hover:from-purple-300 hover:to-indigo-200 '} rounded-xl p-2 cursor-pointer backdrop-blur-lg items-center flex justify-center sm:justify-first sm:self-center gap-2`;
    const {t,i18n } = useTranslation();
+   
          useEffect(()=>{ ///  whenever the language is changed we change the file that we bring the data from
-         if (props.language)
-          i18next.changeLanguage(props.language);
-        },[props.language,i18n]);
+         if (language)
+          i18next.changeLanguage(language);
+        },[language,i18n]);
+        useEffect(() => {
+          console.log(mood)
+          console.log(language)
+        }, [mood])
+        
 
   return (
-    <div className={`${props.language=='english'?'ltr':'rtl'}`}>
-     <Nav mood={props.mood} handleMood={props.handleMood} language={props.language} handleLanguage={props.handleLanguage}/>
+    <div className="">
+     <Nav  />
     <main className="grid lg:grid-cols-2 grid-cols-1    w-full  pt-8 px-8 mt-12 pb-30 rounded-4xl shadow-2xl shadow-white/35">
-        <div className={` backdrop-blur-lg ${props.mood==='light'?'bg-white/10 ':'bg-black/5 '}  rounded-2xl py-16 px-8 flex flex-col self-center justify-around h-fit `}>
+        <div className={` backdrop-blur-lg ${mood ==='light'?'bg-white/10 ':'bg-black/5'} rounded-2xl py-16 px-8 flex flex-col self-center justify-around h-fit `}>
         <div className="my-4" >
-           <h1 className={`text-2xl md:text-5xl font-bold mb-5  ${props.mood==='light' ? 'text-white ':'text-black '}  `}>{t("main_heading")}</h1>
-            <h3 className={` text-lg ${props.mood==='light'?'text-gray-300':'text-gray-600 '} `}>{t("second_heading")}</h3>
+           <h1 className={`text-2xl ${mood==='dark'?'text-black':'text-white '} md:text-5xl font-bold mb-5    `}>{t("main_heading")}</h1>
+            <h3 className={` text-lg ${mood==='dark'?'text-gray-600':'text-gray-300 '}   `}>{t("second_heading")}</h3>
         </div>
            <div className="p-4 flex gap-4  lg:flex-row flex-col ">              
             <button key={1}className={buttonClass}>

@@ -7,7 +7,10 @@ and library for detecting the languages we use via :
 then I made locales folder to store two files each one of them contains the content in different language { we must do that}
 
 you can change the mood theme in this app since we are programmer and I don't like light mood so we have dark one.
-I know I should use createContext but it is new for me I will try to edit the code and use it.
+# Edit
+I used createContext to hanlde the changing of the theme mood and the language over this app in context.tsx and MoodContext.tsx and I wrap the whole App with it.
+
+I also used local storage to store the last value of theme mood and language and keep it to your next session
 
 after learning typeScript , this is the first time I use it in my application so it is a bit tricky
 you must install the node package after cloning my repo via : npm i
